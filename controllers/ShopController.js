@@ -70,7 +70,6 @@ exports.getProducts = async (req, res) => {
                 req.params.category.toLowerCase()
             );
 
-      // filteredProducts.forEach((item) => console.log(item));
       res.render("index", { filteredProducts });
     }
   } catch (err) {

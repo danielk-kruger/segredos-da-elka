@@ -286,11 +286,7 @@ class UI {
     const formatCellNumber = (cell) => {
       const countryCode = "+258";
 
-      if (cell.includes(countryCode)) {
-        return cell; // Phone number already contains the country code
-      } else {
-        return countryCode + cell; // Prepend country code to the phone number
-      }
+      return cell.includes(countryCode) ? cell : countryCode + cell;
     };
 
     const showCellNumberError = (isValid) => {
@@ -343,7 +339,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   orderBtn.addEventListener("click", (e) => {
     e.preventDefault();
-
     if (cart.length < 1) return;
 
     const dialogue = uiManager.openDialogue();
