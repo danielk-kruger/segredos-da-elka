@@ -1,0 +1,157 @@
+<!-- TODO REFACTOR USING PARTIALS -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cakey Menu</title>
+
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/air-datepicker@3.3/air-datepicker.min.css"
+    />
+    <link rel="stylesheet" href="./stylesheets/menu.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="nav">
+        <a href="index.html">
+          <img src="./assets/segredos-final.png" alt="" />
+        </a>
+        <span class="show-cart">
+          <i class="fas fa-cart-plus"></i>
+          <div class="cart-items"></div>
+        </span>
+      </div>
+
+      <div class="content">
+        <h3>Segredos da Elka</h3>
+      </div>
+      <div class="categories">
+        <div class="tabs">
+          <a href="/all" class="tab" data-category="all">Tudo</a>
+          <a href="/salgados" class="tab" data-category="salgados">Salgados</a>
+          <a href="/doces" class="tab" data-category="doces">Doces</a>
+          <a href="/bolos" class="tab" data-category="bolos">Bolos</a>
+          <a href="/sobremesas" class="tab" data-category="sobremesas"
+            >Sobremesas</a
+          >
+        </div>
+      </div>
+      <div class="gallery">
+        <% filteredProducts.forEach(function(product) { %>
+        <div class="gallery-pic">
+          <p><%= product.title %></p>
+          <span><%= product.price %> MT</span>
+          <img src="<%= product.image %>" alt="tt" />
+          <button
+            class="checkout"
+            data-id="<%= product.id %>"
+            onclick="Storage.saveProducts(product)"
+          >
+            Order <i class="fas fa-shopping-cart"></i>
+          </button>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+    <!-- Cart -->
+    <div class="cart-overlay">
+      <div class="cart">
+        <div class="cart-header">
+          <div class="cart-close"></div>
+          <button class="clear-cart">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="cart-content empty-content">
+          <p id="empty-msg" class="false">No items in cart...</p>
+        </div>
+        <div class="cart-footer empty">
+          <button class="close hidden">
+            <i class="fa fa-chevron-down"></i>
+          </button>
+          <div class="modal hidden">
+            <h2>Client Details</h2>
+            <form id="clientForm" method="POST">
+              <!-- TODO add contact form with default (+258) -->
+              <div class="client-name">
+                <label for="name">
+                  <i class="fa fa-user"></i>
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  class="client-name_input"
+                  placeholder="Nome Completo"
+                />
+              </div>
+              <div class="client-number">
+                <label for="cell-number">🇲🇿</label>
+                <input
+                  type="text"
+                  id="cell-number"
+                  class="cell-number_input"
+                  placeholder="Contato"
+                />
+              </div>
+              <div class="client-date">
+                <label for="date">
+                  <i class="fa fa-calendar"></i>
+                </label>
+                <input
+                  type="text"
+                  id="date"
+                  class="client-date_input"
+                  readonly
+                  placeholder="Data de levantamento"
+                />
+              </div>
+              <p id="cell-error" class="error">
+                Número de telefone não é um número moçambicano válido
+              </p>
+              <p id="error-msg" class="error">
+                Nome e Data não podem estar vazios
+              </p>
+            </form>
+          </div>
+          <div class="cart-footer-main">
+            <h3>
+              Your Total: <br />
+
+              MT <span class="cart-total">0</span>
+            </h3>
+            <a href="#" class="order-btn">Order</a>
+            <button type="submit" class="order-finalize" disabled>
+              Mandar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.3.5/air-datepicker.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/contentful@5.0.1/dist/contentful.browser.min.js"></script> -->
+    <script src="./js/cart.js" type="module"></script>
+  </body>
+</html>
