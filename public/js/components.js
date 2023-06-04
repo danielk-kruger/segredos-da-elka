@@ -36,3 +36,11 @@ export const cartItemComponent = (cartItem) => {
     <a href="#" class="remove-item remove" data-id=${cartItem.id}><i class="fas fa-times-circle"></i></a>
   `;
 };
+
+// TODO html + JS component for the user review modal here.
+export const modalComponent = ({ msg }, { fullName, pickupDate }) => {
+  return `
+    <h2 class='modal-order-msg'>${msg}</h2>
+    <p>Obrigado por contar connosco!</p>
+  `;
+};

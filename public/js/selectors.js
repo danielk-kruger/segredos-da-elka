@@ -16,3 +16,4 @@ export const userNameElem = document.querySelector(".client-name_input");
 export const dateElem = document.querySelector(".client-date_input");
 export const cellNumberElem = document.querySelector(".cell-number_input");
 export const cellNumberError = document.getElementById("cell-error");
+export const sucessModal = document.querySelector(".modal");

@@ -39,11 +39,10 @@ exports.orderProducts = async (req, res) => {
         `<h1>Hello ${fullName}</h1>`
       );
     });
-    console.log(order);
 
     return SucessResponseWithData(
       res,
-      "Order made successfully",
+      "Pedido feito com sucesso",
       JSON.stringify(order, null, 2)
     );
   } catch (error) {
@@ -80,10 +79,10 @@ exports.getProducts = async (req, res) => {
 
 exports.getSelectedProduct = async (req, res) => {
   const products = await storeContent();
+
   try {
     const { productId } = req.params;
     const product = products.filter((item) => item.id === productId);
-    console.log(product);
 
     return SucessResponseWithData(res, "Found product", product);
   } catch (error) {

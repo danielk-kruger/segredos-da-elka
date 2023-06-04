@@ -8,6 +8,13 @@ const {
   orderProducts,
   getSelectedProduct,
 } = require("./controllers/ShopController");
+const {
+  getPendingOrders,
+  getFulfilledOrders,
+  getOrdersByDate,
+  getOrdersInAscendingPrice,
+  getOrdersInDescendingPrice,
+} = require("./controllers/dashboard.controller");
 
 const app = express();
 
@@ -42,3 +49,11 @@ app.use(cors());
 app.route("/:category").get(getProducts);
 app.route("/api/select/:productId").get(getSelectedProduct);
 app.route("/products/cart/order").post(orderProducts);
+
+// Dashboard Routes
+
+app.route("/orders/pending").get(getPendingOrders);
+app.route("/orders/fulfilled").get(getFulfilledOrders);
+app.route("/orders/byDate").get(getOrdersByDate);
+app.route("/orders/expensive").get(getOrdersInAscendingPrice);
+app.route("/orders/cheapest").get(getOrdersInDescendingPrice);

@@ -1,6 +1,10 @@
 "use strict";
 
-import { cartItemComponent, productComponent } from "./components.js";
+import {
+  cartItemComponent,
+  productComponent,
+  modalComponent,
+} from "./components.js";
 import { Storage } from "./storage.js";
 import { localePtBr } from "./locale-pt.js";
 
@@ -22,6 +26,7 @@ import {
   dateElem,
   cellNumberElem,
   cellNumberError,
+  sucessModal,
 } from "./selectors.js";
 import { sendOrder, getProduct } from "./api.js";
 
@@ -89,8 +94,6 @@ class UI {
       currentTab.classList.remove("active");
       Storage.saveCurrentTab(event.target.dataset.category);
 
-      // this.loadProducts(event.target.dataset.category);
-      // this.getOrderButtons();
       window.location.href = `/${event.target.dataset.category}`;
     };
 
@@ -300,11 +303,14 @@ class UI {
     this.checkErrors();
 
     cellNumberElem.addEventListener("blur", () => showCellNumberError(isValid));
-
     cellNumberElem.addEventListener("focus", () => {
       if (cellNumberError.classList.contains("hasError"))
         cellNumberError.classList.remove("hasError");
     });
+  }
+
+  onSucessfulOrderInteraction(orderData) {
+    sucessModal.innerHTML = modalComponent(orderData);
   }
 
   checkErrors() {
@@ -347,7 +353,9 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
 
       const user = dialogue.parseDialogue();
-      await sendOrder(user).then((data) => console.log(data));
+      await sendOrder(user).then((data) => {
+        dialogue.onSucessfulOrderInteraction(data, user);
+      });
     });
   });
 });
