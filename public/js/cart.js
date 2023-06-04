@@ -54,7 +54,7 @@ class UI {
   total = 0;
   containsErrors = true;
 
-  constructor(category) {
+  constructor() {
     this.setupApp();
   }
 
@@ -341,7 +341,7 @@ class UI {
 
 // ? Should I move the small script stuff to a separate file
 document.addEventListener("DOMContentLoaded", () => {
-  const uiManager = new UI(currentTab.dataset.category);
+  const uiManager = new UI();
 
   orderBtn.addEventListener("click", (e) => {
     e.preventDefault();
