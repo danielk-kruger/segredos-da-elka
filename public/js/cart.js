@@ -242,10 +242,11 @@ class UI {
       sideBarFooter.classList.remove("order-ready");
       modal.classList.add("hidden");
       modalClose.classList.add("hidden");
+
       finalize.classList.remove("clicked");
+
       orderBtn.classList.remove("clicked");
       cartSideBar.style.overflowY = "scroll";
-
       modalClose.removeEventListener("click", handleCloseModal);
     }
 
